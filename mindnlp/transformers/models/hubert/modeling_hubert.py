@@ -1409,7 +1409,7 @@ None.
                 all_hidden_states = all_hidden_states + (hidden_states,)
 
             # add LayerDrop (see https://arxiv.org/abs/1909.11556 for description)
-            dropout_probability =ops.rand([])
+            dropout_probability = ops.rand([])
 
             skip_the_layer = self.training and (dropout_probability < self.config.layerdrop)
             if not skip_the_layer:
@@ -1856,7 +1856,7 @@ None, labels: Optional[Tensor] = None) -> Union[Tuple, CausalLMOutput]: Construc
             # when not being attended to
             labels_mask = labels >= 0
             target_lengths = labels_mask.sum(-1)
-            flattened_targets = labels.masked_select(labels_mask)
+            #flattened_targets = labels.masked_select(labels_mask)
 
             # ctc_loss doesn't support fp16
             log_probs = ops.log_softmax(logits, axis=-1).swapaxes(0, 1)
